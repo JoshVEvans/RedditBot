@@ -12,7 +12,7 @@ def main():
                     user_agent = 'SnekBot by /u/SnekBotReddit -- https://github.com/JoshVEvans/RedditBot')
 
     subreddit = reddit.subreddit('all')
-    key_words = ['give away', 'giving away', 'giveaway', 'gift']
+    key_words = ['give away', 'giving away', 'giveaway']
     
     for submission in subreddit.stream.submissions():
         for word in key_words:
