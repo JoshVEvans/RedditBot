@@ -23,9 +23,9 @@ def main():
                 sendMail(f"reddit.com{submission.permalink}")
                 print('--------------------------------------------------')
 
-def sendMail(msg):  
-    sender = 'joshbot2003123@gmail.com'
-    password = 'ClickedMoss5'
+def sendMail(msg):
+    sender = 'SnekRedditBot@gmail.com'
+    password = 'pythonbot'
     server = 'smtp.gmail.com'
     port = 465
 
