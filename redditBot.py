@@ -20,7 +20,7 @@ def main():
                 print(f"Title: {submission.title} \nUrl: reddit.com{submission.permalink}")
                 
                 sendMail(f"{submission.title}",
-                         "reddit.com{submission.permalink}")
+                         f"reddit.com{submission.permalink}")
                 print('--------------------------------------------------')
 
 
