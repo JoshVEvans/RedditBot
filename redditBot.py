@@ -12,11 +12,12 @@ def main():
                     user_agent = 'SnekBot by /u/SnekBotReddit -- https://github.com/JoshVEvans/RedditBot')
 
     subreddit = reddit.subreddit('all')
-    key_words = ['give away', 'giving away', 'giveaway']
-    
+    white_list = ['give away', 'giving away', 'giveaway']
+    black_list = []
+
     for submission in subreddit.stream.submissions():
-        for word in key_words:
-            if word in submission.title.lower(): #lowercase all submission titles:
+        for word in white_list:
+            if word in submission.title.lower() and not submission.over_18: #lowercase all submission titles:
                 print(f"Title: {submission.title} \nUrl: reddit.com{submission.permalink}")
                 
                 sendMail(f"{submission.title}",
