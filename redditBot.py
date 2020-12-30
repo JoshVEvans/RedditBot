@@ -13,16 +13,28 @@ def main():
 
     subreddit = reddit.subreddit('all')
     white_list = ['give away', 'giving away', 'giveaway']
-    black_list = []
+    black_list = ['cum']
 
     for submission in subreddit.stream.submissions():
+        send, subject, body = False, None, None
+
         for word in white_list:
-            if word in submission.title.lower() and not submission.over_18: #lowercase all submission titles:
-                print(f"Title: {submission.title} \nUrl: reddit.com{submission.permalink}")
-                
-                sendMail(f"{submission.title}",
-                         f"reddit.com{submission.permalink}")
+            for bad in black_list:
+                if word in submission.title.lower() and bad not in submission.title.lower(): #lowercase all submission titles:
+                    subject, body = f"{submission.title}", f"reddit.com{submission.permalink}"
+
+                    send = True
+                    break
+
+            if send == True:
+                print(f"Title: {subject} \nUrl: {body}")
+                sendMail(subject, body)
                 print('--------------------------------------------------')
+
+                send = False
+
+        
+
 
 
 def sendMail(subject, msg):
@@ -36,7 +48,6 @@ def sendMail(subject, msg):
 
     message.attach(MIMEText(msg, 'plain'))
     server.send_message(message)
-
 
 
 main()
